@@ -1,6 +1,6 @@
 from typing import List, Optional
 from cog import BasePredictor, Input
-from transformers import T5ForConditionalGeneration, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
  
 CACHE_DIR = 'weights'
@@ -12,7 +12,7 @@ MODEL_NAME = 'TinyLlama/TinyLlama-1.1B-Chat-v1.0'
 class Predictor(BasePredictor):
     def setup(self):
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
-        self.model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME)
+        self.model = AutoModelForCausalLM.from_pretrained(MODEL_NAME)
         self.model.to(self.device)
         self.tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
  
