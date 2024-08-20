@@ -7,14 +7,14 @@ CACHE_DIR = 'weights'
  
 # Shorthand identifier for a transformers model.
 # See https://huggingface.co/models?library=transformers for a list of models.
-MODEL_NAME = 'google/flan-t5-xl'
+MODEL_NAME = 'TinyLlama/TinyLlama-1.1B-Chat-v1.0'
  
 class Predictor(BasePredictor):
     def setup(self):
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
-        self.model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME, cache_dir=CACHE_DIR, local_files_only=True)
+        self.model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME)
         self.model.to(self.device)
-        self.tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, cache_dir=CACHE_DIR, local_files_only=True)
+        self.tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
  
     def predict(
         self,
