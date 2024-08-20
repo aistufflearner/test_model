@@ -15,7 +15,9 @@ class Predictor(BasePredictor):
         self.model = AutoModelForCausalLM.from_pretrained(MODEL_NAME)
         self.model.to(self.device)
         self.tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
- 
+        
+        print(self.model)
+
     def predict(
         self,
         prompt: str = Input(description=f"Text prompt to send to the model."),
@@ -44,7 +46,7 @@ class Predictor(BasePredictor):
             default=1
         )
         ) -> List[str]:
-        input = self.tokenizer(prompt, return_tensors="pt").input_ids.to(self.device)
+        input = self.tokenizer.apply_chat_template([{"role": "user", "content": prompt}], return_tensors='pt').to(self.device)
  
         outputs = self.model.generate(
             input,
@@ -53,7 +55,7 @@ class Predictor(BasePredictor):
             do_sample=True,
             temperature=temperature,
             top_p=top_p,
-            repetition_penalty=repetition_penalty
+
         )
         out = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)
         return out
