@@ -3,9 +3,8 @@ build:
   python_version: "3.11"
   cuda: "12.1.1"
   python_packages:
-    - "vllm==0.5.4"
-    - "torch"
+    - "torch==2.2.0"
+    - "vllm"
     - "transformers"
-    - "pydantic==2.8.2"
 
 predict: "predict.py:Predictor"
