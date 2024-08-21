@@ -5,7 +5,7 @@ build:
   python_packages:
     - "torch"
     - "transformers"
-    - "vllm"
+    - "vllm==0.5.4"
     - "pydantic"
     
 
