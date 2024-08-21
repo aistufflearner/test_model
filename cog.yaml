@@ -2,7 +2,7 @@ build:
   gpu: true
   python_version: "3.10"
   python_packages:
-    - "torch==2.1.1"
+    - "torch==2.4.0"
     - "transformers==4.44.1"
     - "vllm==0.5.4"
     - "vllm-flash-attn==2.6.1"
