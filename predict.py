@@ -23,14 +23,15 @@ class Predictor(BasePredictor):
         
     def predict(
         self,
-        descriptions: str = Input(description=f"Text prompt to send to the model.")
+#        descriptions: str = Input(description=f"Text prompt to send to the model."),
+        prompt: List[str] = Input(description=f"Text prompt to send to the model."),
         ) -> List[str]:
 
         chats = [self.tokenizer.apply_chat_template([
             { "content": "Convert the description to jsxgpre code", "role": "system" },
             { "content": description, "role": "user" }, 
             { "content": "", "role": "assistant" } 
-        ], tokenize=False).replace('assistant<|end_header_id|>\n\n<|eot_id|>', 'assistant<|end_header_id|>\n\n') for description in descriptions]
+        ], tokenize=False).replace('assistant<|end_header_id|>\n\n<|eot_id|>', 'assistant<|end_header_id|>\n\n') for description in prompt]
 
 
         outputs = self.llm.generate(
