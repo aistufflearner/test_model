@@ -17,7 +17,7 @@ sampling_params = SamplingParams(
 
 class Predictor(BasePredictor):
     def setup(self):
-        self.llm = LLM(model="SM0rc/mathleaks-grapher-merged", max_model_len=42592)
+        self.llm = LLM(model="SM0rc/mathleaks-grapher-merged", max_num_batched_tokens=65528, max_model_len=65528)
         self.tokenizer = AutoTokenizer.from_pretrained("meta-llama/Meta-Llama-3-8B-Instruct")
         self.outputs = []
         
