@@ -2,6 +2,11 @@ build:
   gpu: true
   python_version: "3.10"
   cuda: "12.1.1"
-  python_requirements: "requirements.txt"
+  python_packages:
+    - "torch==2.1.1"
+    - "transformers"
+    - "vllm"
+    - "pydantic"
+    
 
 predict: "predict.py:Predictor"
