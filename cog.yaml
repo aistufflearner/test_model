@@ -7,5 +7,7 @@ build:
     - "transformers==4.44.1"
     - "vllm==0.5.4"
     - "vllm-flash-attn==2.6.1"
+    - "pydantic==2.8.2"
+    - ""pydantic_core==2.20.1"
 
 predict: "predict.py:Predictor"
